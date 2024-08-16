@@ -27,6 +27,12 @@ async function run() {
   try {
 
     const allMobilesCollection = client.db("mobile-store").collection("all-mobile");
+
+    //get all mobile
+    app.get("/allmobile", async (req, res) => {
+      const allmobile = await allMobilesCollection.find().toArray();
+      res.json(allmobile);
+    });
    
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
