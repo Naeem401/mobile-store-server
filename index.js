@@ -25,6 +25,8 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
+
+    const allMobilesCollection = client.db("mobile-store").collection("all-mobile");
    
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
@@ -35,3 +37,11 @@ async function run() {
   }
 }
 run().catch(console.dir);
+
+app.get('/', (req, res) => {
+    res.send('server is running')
+  })
+  
+  app.listen(port, () => {
+    console.log(`server running on port ${port}`);
+  });
